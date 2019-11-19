@@ -6,39 +6,56 @@
 <body>
 
 <form>
+    Pomodoro: <input id="pomodoro" type="text" value="3"> <br>
+    Break: <input id="breaktime" type="text" value="1"> <br>
+
     <input id="time_display" type="text">
 </form>
+
+<button type="submit" id="set_pomodoro">Set pomodoro time</button>
+<button type="submit" id="set_breaktime">Set break time</button>
 
 <button type="submit" id="start">Start</button>
 <button type="submit" id="stop">Stop</button>
 <button type="submit" id="reset">Reset</button>
 
 <script>
-    let display = document.getElementById('time_display');
-    let start = document.getElementById('start');
+  let display = document.getElementById('time_display');
+  let start = document.getElementById('start');
 
-    var timerInterval;
+  var pomodoro = 3;
+  var breaktime = 1;
 
-    start.addEventListener('click', function(e){
+  let set_pomodoro = document.getElementById('set_pomodoro');
+  set_pomodoro.addEventListener('click', function(e){
+    let pomodoro_input = document.getElementById('pomodoro');
+    pomodoro_ctr = pomodoro_input.value;
+  });
+
+  var pomodoro_ctr = pomodoro;
+  var breaktime_ctr = breaktime;
+
+  var timerInterval;
+
+  start.addEventListener('click', function(e){
     //display.text("Time");
     //display.setAttribute("text","Time");
     timerInterval = setInterval(myTimer, 1000);
   });
 
   let stop = document.getElementById('stop');
-stop.addEventListener('click', function(e){
+  stop.addEventListener('click', function(e){
     clearInterval(timerInterval);
   });
 
   let reset = document.getElementById('reset');
-reset.addEventListener('click', function(e){
+  reset.addEventListener('click', function(e){
     display.value = "reset";
   });
 
   function myTimer() {
-    var date = new Date();
-    var time = date.toLocaleTimeString();
-    display.value = time;
+    pomodoro_ctr --;
+    display.value = pomodoro_ctr;
   }
 
 </script>
