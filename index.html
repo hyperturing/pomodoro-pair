@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> Pomodoro technique </title>
+    </head>
+
+<body>
+
+<form>
+    <input id="time_display" type="text">
+</form>
+
+<button type="submit" id="start">Start</button>
+<button type="submit" id="stop">Stop</button>
+<button type="submit" id="reset">Reset</button>
+
+<script>
+    let display = document.getElementById('time_display');
+
+let start = document.getElementById('start');
+start.addEventListener('click', function(e){
+    //display.text("Time");
+    //display.setAttribute("text","Time");
+    display.value = "start";
+  });
+  let stop = document.getElementById('stop');
+stop.addEventListener('click', function(e){
+    display.value = "stop";
+  });
+  let reset = document.getElementById('reset');
+reset.addEventListener('click', function(e){
+    display.value = "reset";
+  });
+</script>
+
+</body>
+</html>
