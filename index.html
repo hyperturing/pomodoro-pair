@@ -25,21 +25,33 @@
 
   var pomodoro = 3;
   var breaktime = 1;
+  var isPomodoro = false;
+  var pomodoro_ctr = pomodoro;
+  var breaktime_ctr = breaktime;
 
   let set_pomodoro = document.getElementById('set_pomodoro');
   set_pomodoro.addEventListener('click', function(e){
     let pomodoro_input = document.getElementById('pomodoro');
+    pomodoro = pomodoro_input.value;
     pomodoro_ctr = pomodoro_input.value;
   });
 
-  var pomodoro_ctr = pomodoro;
-  var breaktime_ctr = breaktime;
+  let set_breaktime = document.getElementById('set_breaktime');
+  set_breaktime.addEventListener('click', function(e){
+
+    let breaktime_input = document.getElementById('breaktime');
+    breaktime = breaktime_input.value;
+    breaktime_ctr = breaktime_input.value;
+  });
 
   var timerInterval;
 
   start.addEventListener('click', function(e){
     //display.text("Time");
     //display.setAttribute("text","Time");
+
+    isPomodoro = true;
+
     timerInterval = setInterval(myTimer, 1000);
   });
 
@@ -54,8 +66,23 @@
   });
 
   function myTimer() {
-    pomodoro_ctr --;
-    display.value = pomodoro_ctr;
+
+    if (isPomodoro) {
+          pomodoro_ctr --;
+          display.value = pomodoro_ctr;
+          if (pomodoro_ctr <= 0){
+            isPomodoro = false;
+            pomodoro_ctr = pomodoro;
+          }
+    }
+    else {
+          breaktime_ctr --;
+          display.value = breaktime_ctr;
+          if (breaktime_ctr <= 0){
+            isPomodoro = false;
+            breaktime_ctr = breaktime;
+          }
+    }
   }
 
 </script>
